@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+::ng-deep :root {
+    --font-style:'Playfair Display', serif;
+}
+* {
+    font-weight: bolder;
+}
+h1 {
+    font-family: var(--font-style);
+    font-size: xxx-large;
+}
+::ng-deep mat-label , ::ng-deep input::placeholder ,::ng-deep mat-hint ,button ,span ,a {
+    font-family: var(--font-style);
+}
+::ng-deep mat-form-field {
+    padding: 2rem;
+    width: 100%;
+}
+.form-group {
+    width: 80%;
+}
+.ng-contain {
+    display: grid;
+    place-items: center;
+
+    position: absolute;
+    top:50%;
+    left: 50%;
+
+    transform: translate(-50%,-50%);
+    height: 80%;
+
+    box-shadow: 1px 1px 6px black;
+
+    border-radius: 6px;
+}
+.ng-form {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}

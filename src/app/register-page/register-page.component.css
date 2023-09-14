@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+::ng-deep :root {
+    --font-style:'Playfair Display', serif;
+}
+h1 ,h3 ,div {
+    font-family: var(--font-style);
+}
+
+h1 {
+    font-size: xx-large;
+}
+.ng-container {
+    width: 90vw;
+    height: 70vh;
+
+    border-radius: 6px;
+
+    box-shadow: 1px 1px 6px black;
+}
+section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    text-align: center;
+}
+.ng-form-container {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-evenly;
+
+    padding: 2rem;
+}

@@ -1,0 +1,75 @@
+[
+    {
+        "id": "01",
+        "name":{
+            "firstName":"DINESH",
+            "lastName" :"SANKAR"
+        },
+        "gender":"male",
+        "dateOfBirth": "31/03/2003",
+        "email":"dinesh.sankar0110@gmail.com",
+        "phoneNumber":9987654329,
+        "password":"D0110."        
+    },
+    {
+        "id": "02",
+        "name":{
+            "firstName":"VIJAY",
+            "lastName" :"KUMAR"
+        },
+        "gender":"male",
+        "dateOfBirth": "31/03/2003",
+        "email":"vijay110@gmail.com",
+        "phoneNumber":9987654329,
+        "password":"V0110."        
+    },
+    {
+        "id": "03",
+        "name":{
+            "firstName":"SAKTHI",
+            "lastName" :"SIVAN"
+        },
+        "gender":"female",
+        "dateOfBirth": "01/01/1990",
+        "email":"sakthi.siva0110@gmail.com",
+        "phoneNumber":9987654329,
+        "password":"S0110."        
+    },
+    {
+        "id": "04",
+        "name":{
+            "firstName":"SAKTHI",
+            "lastName" :"SIVAN"
+        },
+        "gender":"female",
+        "dateOfBirth": "01/01/1990",
+        "email":"sakthi.siva0110@gmail.com",
+        "phoneNumber":9987654329,
+        "password":"S0110."        
+    },
+    {
+        "id": "05",
+        "name":{
+            "firstName":"SAKTHI",
+            "lastName" :"SIVAN"
+        },
+        "gender":"female",
+        "dateOfBirth": "01/01/1990",
+        "email":"sakthi.siva0110@gmail.com",
+        "phoneNumber":9987654329,
+        "password":"S0110."        
+    },
+    {
+        "id": "06",
+        "name":{
+            "firstName":"SAKTHI",
+            "lastName" :"SIVAN"
+        },
+        "gender":"female",
+        "dateOfBirth": "01/01/1990",
+        "email":"sakthi.siva0110@gmail.com",
+        "phoneNumber":9987654329,
+        "password":"S0110."        
+    }
+]
+

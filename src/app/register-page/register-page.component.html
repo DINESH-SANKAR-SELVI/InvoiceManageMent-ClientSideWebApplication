@@ -1,0 +1,70 @@
+<section>
+    <h1>Your Profile</h1>
+    <h3>Enter the login information for your account. You will be able to create addtional users after registering</h3>
+    <div class="ng-container">
+        <form [formGroup]="regForm" (ngSubmit)="Onprocess(); regForm.reset();">
+          <div class="ng-form-container" > 
+            <!-- <div class="front-side"> -->
+                <div formGroupName="name" > <!--class="name-group">-->
+                    <mat-form-field class="m-3">
+                        <mat-label>First Name</mat-label>
+                        <input type="text" matInput formControlName="firstName" #firstName />
+                        <button *ngIf='firstName.value' matSuffix mat-icon-button aria-label='clear' (click)="firstName.value=''" >
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    
+                    <mat-form-field >
+                        <mat-label>Last Name</mat-label>
+                        <input type="text" matInput formControlName="lastName" #lastName />
+                        <button *ngIf='lastName.value' matSuffix mat-icon-button aria-label='clear' (click)="lastName.value=''" >
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <!-- <div > -->
+                    <mat-radio-group aria-label="Select an option" formControlName="gender">
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                        <mat-radio-button value="others">Others</mat-radio-button>
+                    </mat-radio-group>
+                <!-- </div> -->
+            <!-- </div> -->
+            
+            <!-- <div class="basic-2"> -->
+                <!-- <div> -->
+                <mat-form-field class="phone-field m-3 ">
+                    <mat-label>Telephone</mat-label>
+                    <span matPrefix>+91 &nbsp;</span>
+                    <input type="tel" maxlength="10" matInput formControlName="phoneNumber" placeholder="987654328">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" maxlength="56" #emailRef>
+                    <mat-error *ngIf="regForm.get('email')?.hasError('email') && !regForm.get('email')?.hasError('required')">
+                    Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="regForm.get('email')?.hasError('required')">
+                    Email is <strong>required</strong>
+                    </mat-error>
+                    <mat-hint align="end">{{emailRef.value.length}} / 56</mat-hint>
+                </mat-form-field>
+            <!-- </div> -->
+                <mat-form-field class="m-3">
+                    <mat-label>Date Of Birth</mat-label>
+                    <input type="date" matNativeControl pattern="\d{2}/\d{2}/\d{4}" placeholder="MM-DD-YYYY" formControlName="dateOfBirth" />
+                    <mat-hint>ex: 31-03-2003</mat-hint>
+                </mat-form-field>
+        <!-- </div> -->
+            
+    </div> 
+    <div class="button-group" >
+            <button class="m-3" type="button" mat-stroked-button (click)="GotoLogIn()">Cancel</button>
+            <button class="m-3" type="submit" mat-raised-button color="primary" >Save & LogIn</button>
+    </div>
+        </form>
+    </div>
+</section>
+
