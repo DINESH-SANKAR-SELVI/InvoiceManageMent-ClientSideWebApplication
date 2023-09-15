@@ -3,13 +3,14 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource, MatTable} from '@angular/material/table';
 import { DataProviderService, TableType } from '../data-provider.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-info',
   templateUrl: './table-info.component.html',
   styleUrls: ['./table-info.component.css']
 })
-export class TableInfoComponent implements AfterViewInit {
+export class TableInfoComponent {//implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -17,31 +18,31 @@ export class TableInfoComponent implements AfterViewInit {
 
  // ELEMENT_DATA!: TableType[];
   
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'gender', 'dateOfBirth', 'email' ,'phoneNumber' ,'password'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'gender', 'dateOfBirth', 'email' ,'phoneNumber' ,'password', 'action'];
   dataSource !: MatTableDataSource<TableType>;
 
-  constructor( private dataProvider :DataProviderService) {
+  constructor( private dataProvider :DataProviderService, private route:Router ,private currentPath: ActivatedRoute) {
      this.dataProvider.getAllUser().subscribe((result)=> { this.dataSource = new MatTableDataSource(result);});
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
-  addData() {
-    // const randomElementIndex = Math.floor(Math.random() * this.ELEMENT_DATA!.length);
-    // this.dataSource.data.push(this.ELEMENT_DATA[randomElementIndex]);
-    // this.table.renderRows();
+  // addData() {
 
-    console.warn(this.dataSource.data);
-  }
+  //   console.warn(this.dataSource.data);
+  // }
 
-  removeData() {
-    this.dataSource.data.pop();
-    this.table.renderRows();
-    
-    console.warn(this.dataSource.data);
+  removeData(id:string) {
+    this.dataProvider.deleteById(id);
+
+    // this.dataSource.data.pop();
+     this.table.renderRows();
+     this.route.navigate(['..'],{ relativeTo: this.currentPath});
+
+    // console.warn(this.dataSource.data);
   }
 
   applyFilter(event: Event) {

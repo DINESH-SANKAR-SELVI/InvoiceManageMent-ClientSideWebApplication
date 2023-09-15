@@ -19,6 +19,8 @@ export class LogInPageComponent {
     Password:''
   };
 
+  emailregex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
   hidePassword: boolean = true;
 
   canSubmit: boolean= true;  
@@ -26,7 +28,9 @@ export class LogInPageComponent {
   onSubmit(event: Event){
     event.preventDefault();
 
-    this.way.navigate(['DashBoard']);
+    if(this.LoginData.UserName=='root@gmail.com'&& this.LoginData.Password=='12345678'){
+        this.way.navigate(['DashBoard']);
+    }
   }
 
   GotoRegister(){

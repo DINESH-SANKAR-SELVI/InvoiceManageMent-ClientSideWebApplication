@@ -25,6 +25,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { ViewModelComponent } from './view-model/view-model.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MatCardModule } from '@angular/material/card';
     LogInPageComponent,
     DashboardComponent,
     ViewEmployeeComponent,
-    TableInfoComponent
+    TableInfoComponent,
+    ViewModelComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

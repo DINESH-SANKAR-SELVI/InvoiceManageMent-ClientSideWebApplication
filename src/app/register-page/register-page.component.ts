@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,26 +12,44 @@ export class RegisterPageComponent {
 
   constructor(private forms: FormBuilder,private route:Router) { }
 
+  idNumber:string = this.generateRandomId();
+
+  //numberregex:string ="^(?:\+91|0)[-\s]?\d{4}[-\s]?\d{6}$";
+  emailregex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
   regForm = this.forms.group({
-    name:this.forms.group({ firstName: [''],  lastName: ['']  }),
-    gender: [''],
-    dateOfBirth: [''],
-    email: ['', [Validators.required, Validators.email]],
-    phoneNumber: [''],
-    password: [''],
-});
+    id:[this.idNumber],
+    name:this.forms.group({ firstName: ['' ,Validators.compose([Validators.required, Validators.maxLength(32)])],  lastName: ['', Validators.compose([Validators.required, Validators.maxLength(32)])]  }),
+    gender: ['', Validators.required],
+    dateOfBirth: ['' ,Validators.compose([Validators.required])],
+    email: ['', Validators.compose([Validators.required, Validators.maxLength(32), Validators.pattern(this.emailregex)])],
+    phoneNumber: ['', Validators.compose([Validators.required, Validators.maxLength(10), Validators.minLength(10)/*, Validators.pattern(this.numberregex)*/])],
+    password: ['' ,Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32)])]
+  });
+
+  generateRandomId(): string {
+    const min = 100000; 
+    const max = 999999; 
+    const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomId.toString();
+  }
 
   value='clear me';
   
-  Onprocess() {
-    console.log(this.regForm.value)
-    alert(this.regForm.get('name')?.get('firstName')?.value);
+  hidePassword: boolean = true;
 
+  Onprocess() {
+    console.log(this.regForm.value);
     this.route.navigate(['/DashBoard']);
   }
 
   GotoLogIn() {
     this.route.navigate(['/LogIn']);
+  }
+
+ getcontrol(name: any): AbstractControl | null {
+
+    return this.regForm.get(name)
   }
 
 }

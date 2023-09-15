@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataProviderService, TableType } from '../data-provider.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-employee',
@@ -10,17 +11,23 @@ export class ViewEmployeeComponent {
 
   data: TableType[] |undefined; 
 
-  constructor (private dataProvider: DataProviderService) { 
+  constructor (private dataProvider: DataProviderService,private route: Router, private currentURL: ActivatedRoute) { 
 
     this.dataProvider.getAllUser().subscribe( (result)=>{ this.data=result; })
   }
-  
-  names :string[]=["dinesh","siva","sakthi","selvam","murugan"];
 
   MakeEdit(ar:any){
-    alert("edited" +ar);
-
-    console.warn(this.data?.values)
+    this.route.navigate([ar],{relativeTo: this.currentURL});
   }
-
+  addUser(){
+    let id = this.generateRandomId();
+    this.route.navigate(['createData/'+id],{relativeTo: this.currentURL});
+  }
+  
+  generateRandomId(): string {
+  const min = 100000; 
+  const max = 999999; 
+  const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
+  return randomId.toString();
+}
 }

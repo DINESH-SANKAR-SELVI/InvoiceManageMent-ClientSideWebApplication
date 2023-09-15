@@ -1,23 +1,35 @@
 <section class="container ng-contain ">
     <h1 class="text text-center p-3 m-3">Login</h1>
-    <form #SignIn='ngForm' (ngSubmit)="onSubmit($event);(SignIn.status!=='INVALID')" class="ng-form">
+    <p class="text text-primary" > userName : root@gmail.com & password : 12345678 </p>
+    <form #SignIn='ngForm' (ngSubmit)="onSubmit($event)" class="ng-form">
       <div class="form-group" >
         <mat-form-field appearance="fill">
             <mat-label>UserName</mat-label>
-            <input matInput placeholder="abc123@gmail.com" type="email" id="userName" name="userName" [(ngModel)]="LoginData.UserName" #userName="ngModel">
+            <input matInput placeholder="abc123@gmail.com" type="email" [pattern]="emailregex"  required maxlength="32" [ngClass]="{error:userName.errors && userName.touched}" id="userName" name="userName" [(ngModel)]="LoginData.UserName" #userName="ngModel">
+           
             <mat-icon matSuffix>account_circle</mat-icon>
-            <mat-hint>Registered Email address !</mat-hint>
-          </mat-form-field>
+            <mat-hint  *ngIf="!(userName.errors && userName.touched)" >Registered Email address !</mat-hint>
+           
+              <mat-hint *ngIf=" (userName.errors && userName.touched) && userName.errors['required']"class="text text-danger">Enter the mail</mat-hint>
+              <mat-hint *ngIf=" (userName.errors && userName.touched) && userName.errors['pattern']"class="text text-danger">Enter the valid mail</mat-hint>
+
+            </mat-form-field>        
       </div>
       <div class="form-group">
         <mat-form-field>
             <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" id="userPassword" minlength="6" maxlength="12"  name="userPassword" [(ngModel)]="LoginData.Password" #userPassword="ngModel" >
+            <input matInput [type]="hidePassword ? 'password' : 'text'" id="userPassword" required minlength="8" maxlength="12"  name="userPassword" [(ngModel)]="LoginData.Password" #userPassword="ngModel" >
+          
             <mat-icon matSuffix title="Reset Password" (click)="hidePassword =! hidePassword">{{ hidePassword ? 'visibility ' : 'visibility_off'}}</mat-icon>
+
+            <mat-hint *ngIf=" (userPassword.errors && userPassword.touched) && (userPassword.errors['required'])" class="text text-danger">Enter the Password</mat-hint>
+            <mat-hint *ngIf="(userPassword.errors && userPassword.touched) && (userPassword.errors['minlength'] || userPassword.errors['maxlength'])" class="text text-danger">Password should be min 8 and max 12 character</mat-hint>
+
         </mat-form-field>
       </div>
+
       <div class="form-group" class="w-80" style="display: flex;flex-direction: column;align-items: center;">
-        <button type="submit" mat-stroked-button color="primary" [disabled]="!(userName.value && userPassword.value)"><mat-icon>done_all</mat-icon>Get In</button><div class="m-3" style="width:100%; border-bottom: 1px solid black;"></div>
+        <button type="submit" mat-stroked-button color="primary" [disabled]="(!(userName.value && userPassword.value)) || SignIn.invalid"  ><mat-icon>done_all</mat-icon>Get In</button><div class="m-3" style="width:100%; border-bottom: 1px solid black;"></div>
         <span> Not A Member ?<a  class="m-2" mat-raised-button (click)="GotoRegister()"> Register</a></span>
       </div>
     </form>
