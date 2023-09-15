@@ -40,7 +40,7 @@ export class DataProviderService {
   }
 
   updateById(id:any ,data: TableType){
-    console.log(this.URL, data)
+    console.log(this.URL+'/'+id, data)
     return this.http.put<TableType>(this.URL+'/'+id,JSON.parse(JSON.stringify(data)),this.httpOptions);
   }
 
