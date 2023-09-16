@@ -47,7 +47,7 @@ export class CreateUserComponent {
 
   Onprocess() {
     let vaa = JSON.parse(JSON.stringify(this.regForm.value));
-    this.dataProvider.postData(vaa);
+    this.dataProvider.postData(vaa).subscribe((result)=>{console.log(result , "create user")});
     this.regForm.reset();
     this.route.navigate(['DashBoard']);
   }

@@ -36,7 +36,7 @@ export class TableInfoComponent {//implements AfterViewInit {
   // }
 
   removeData(id:string) {
-    this.dataProvider.deleteById(id);
+    this.dataProvider.deleteById(id).subscribe();
 
     // this.dataSource.data.pop();
      this.table.renderRows();

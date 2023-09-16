@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataProviderService } from '../data-provider.service';
 
 @Component({
   selector: 'app-register-page',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterPageComponent {
 
-  constructor(private forms: FormBuilder,private route:Router) { }
+  constructor(private forms: FormBuilder,private route:Router, private dataProvider : DataProviderService) { }
 
   idNumber:string = this.generateRandomId();
 
@@ -40,6 +41,8 @@ export class RegisterPageComponent {
 
   Onprocess() {
     console.log(this.regForm.value);
+
+    this.dataProvider.postData(JSON.parse(JSON.stringify(this.regForm.value))).subscribe((result)=>{ console.log(result ,"in register");})
     this.route.navigate(['/DashBoard']);
   }
 

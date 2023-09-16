@@ -12,12 +12,14 @@ h1 {
 }
    
 .ng-container {
+    display:flex;
+    flex-direction: column;
     width: 90vw;
-    height: 70vh;
+    height: 85vh;
 
     border-radius: 6px;
-
     box-shadow: 1px 1px 6px black;
+
 }
 section {
     position: absolute;

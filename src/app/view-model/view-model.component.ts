@@ -71,7 +71,7 @@ export class ViewModelComponent {
 
   Onprocess() {
     let vaa = JSON.parse(JSON.stringify(this.regForm.value));
-    this.dataProvider.updateById(this.id,vaa);
+    this.dataProvider.updateById(this.id,vaa).subscribe((result)=>{ console.log(result , "view update")});
     this.regForm.reset();
     this.route.navigate(['/DashBoard']);
   }
