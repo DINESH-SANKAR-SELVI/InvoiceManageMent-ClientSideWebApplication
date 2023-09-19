@@ -4,15 +4,17 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LogInPageComponent } from './log-in-page/log-in-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import { TableInfoComponent } from './table-info/table-info.component';
+import { ViewModelComponent } from './view-model/view-model.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -25,8 +27,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
-import { ViewModelComponent } from './view-model/view-model.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [

@@ -71,6 +71,18 @@
       "email": "d@gmail.com",
       "phoneNumber": "9092230969",
       "password": "9874561230"
+    },
+    {
+      "id": "590754",
+      "name": {
+        "firstName": "vikarm",
+        "lastName": "vedha"
+      },
+      "gender": "male",
+      "dateOfBirth": "1111-11-11",
+      "email": "d@gmail.com",
+      "phoneNumber": 7604829520,
+      "password": "11111111112"
     }
   ]
 }

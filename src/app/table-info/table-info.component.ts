@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild,OnInit } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource, MatTable} from '@angular/material/table';
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './table-info.component.html',
   styleUrls: ['./table-info.component.css']
 })
-export class TableInfoComponent {//implements AfterViewInit {
+export class TableInfoComponent implements OnInit {// AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -22,13 +22,12 @@ export class TableInfoComponent {//implements AfterViewInit {
   dataSource !: MatTableDataSource<TableType>;
 
   constructor( private dataProvider :DataProviderService, private route:Router ,private currentPath: ActivatedRoute) {
-     this.dataProvider.getAllUser().subscribe((result)=> { this.dataSource = new MatTableDataSource(result);});
+     this.dataProvider.getAllUser().subscribe((result)=> { this.dataSource = new MatTableDataSource(result); this.dataSource.paginator = this.paginator; this.dataSource.sort = this.sort;});
   }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
+  ngOnInit(): void {
+    
+  }
 
   // addData() {
 
