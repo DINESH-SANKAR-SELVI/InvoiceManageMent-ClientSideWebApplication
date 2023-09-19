@@ -83,6 +83,18 @@
       "email": "d@gmail.com",
       "phoneNumber": 7604829520,
       "password": "11111111112"
+    },
+    {
+      "id": "228008",
+      "name": {
+        "firstName": "dinesh",
+        "lastName": "s"
+      },
+      "gender": "male",
+      "dateOfBirth": "2222-02-22",
+      "email": "d@gmail.com",
+      "phoneNumber": "7604829520",
+      "password": "1234567890"
     }
   ]
 }
