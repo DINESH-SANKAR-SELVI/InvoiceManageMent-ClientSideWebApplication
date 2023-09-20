@@ -1,0 +1,41 @@
+<section class="container position-absolute top-50 start-50 translate-middle shadow border border-primary">
+    <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title class="text text-success text-uppercase" style="font-weight: bolder;">Check City and State by country </mat-card-title>
+      <mat-card-subtitle class="text text-secondary">Can Select And See By DropDown</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="m-3 p-3">
+        <h4>Country</h4>
+        <mat-form-field class="w-100">
+          <mat-label>Ex: India</mat-label>
+          <mat-select (valueChange)="changeStates($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let Country of Countries" [value]="Country.code">{{Country.desc}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <h4>State</h4>
+        <mat-form-field class="w-100" >
+          <mat-label>Ex: TamilNadu</mat-label>
+          <mat-select (valueChange)="changeCities($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let state of states" [value]="state.code">{{state.desc}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <h4>City</h4>
+        <mat-form-field class="w-100">
+          <mat-label>Ex: Chennai</mat-label>
+          <mat-select >
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let city of Cities" [value]="city.desc">{{city.desc}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" routerLink="..">BackTo<mat-icon matSuffix>back</mat-icon></button>
+    </mat-card-actions>
+    </mat-card>
+  </section>

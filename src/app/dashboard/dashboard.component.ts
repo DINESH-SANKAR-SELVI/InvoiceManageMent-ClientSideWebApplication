@@ -67,15 +67,15 @@ export class DashboardComponent {
 
   constructor(private route: Router,private currentPath: ActivatedRoute ,public load:LoaderService, private contexts: ChildrenOutletContexts) { }
 
-  ViewTable(){
-    // alert('viewTable');
-    this.route.navigate(['TableInfo'],{relativeTo: this.currentPath});
-  }
+  // ViewTable(){
+  //   // alert('viewTable');
+  //   this.route.navigate(['TableInfo'],{relativeTo: this.currentPath});
+  // }
 
-  ViewEmployee(){
-    // alert('view employee');
-    this.route.navigate(['ViewEmployee'],{relativeTo: this.currentPath});
-  }
+  // ViewEmployee(){
+  //   // alert('view employee');
+  //   this.route.navigate(['ViewEmployee'],{relativeTo: this.currentPath});
+  // }
 
   
   getRouteAnimationData() {

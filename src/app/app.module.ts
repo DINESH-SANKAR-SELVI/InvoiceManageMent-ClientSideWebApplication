@@ -7,15 +7,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './app.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
-import { LogInPageComponent } from './log-in-page/log-in-page.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ViewEmployeeComponent } from './view-employee/view-employee.component';
-import { TableInfoComponent } from './table-info/table-info.component';
-import { ViewModelComponent } from './view-model/view-model.component';
-import { CreateUserComponent } from './create-user/create-user.component';
-
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,6 +22,18 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from './interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
+
+import { AppComponent } from './app.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { LogInPageComponent } from './log-in-page/log-in-page.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ViewEmployeeComponent } from './view-employee/view-employee.component';
+import { TableInfoComponent } from './table-info/table-info.component';
+import { ViewModelComponent } from './view-model/view-model.component';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { DropDownTaskComponent } from './drop-down-task/drop-down-task.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ViewEmployeeComponent,
     TableInfoComponent,
     ViewModelComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    DropDownTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCardModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDividerModule,
+    MatSelectModule
   ],
   providers: [ {provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true} ],
   bootstrap: [AppComponent]
