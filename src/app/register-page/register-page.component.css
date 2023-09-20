@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 :host h1,h2,h3,h4,h5,h6,p,div,mat-form-field ,mat-label, span{
     font-family: var(--font-style);
@@ -14,33 +14,3 @@ h1 ,h3 ,div ,label{
 h1 {
     font-size: xx-large;
 }
-   
-.ng-container {
-    display:flex;
-    flex-direction: column;
-    width: 90vw;
-    height: 75vh;
-
-    border-radius: 6px;
-    box-shadow: 1px 1px 6px black;
-
-}
-section {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-
-    text-align: center;
-}
-.ng-form-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-
-    align-items: center;
-    justify-content: space-evenly;
-
-    padding: 2rem;
-
-    position: relative;
-} */

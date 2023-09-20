@@ -1,108 +1,240 @@
-
 <div class="load-contain" *ngIf="load.isLoad | async">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-     <mat-spinner class="position-absolute top-50 start-50 translate-middle" ></mat-spinner>
-  </div>
-  
-<div class="container" style="position: absolute;left:70%;top:15%;transform: translate(-50%);">
-    <mat-card style="width: 60vw; height: 80vh;box-shadow: 1px 1px 6px black;filter:drop-shadow(1px 1px 6px black);">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <mat-spinner
+    class="position-absolute top-50 start-50 translate-middle"
+  ></mat-spinner>
+</div>
+
+<div
+  class="container"
+  style="position: absolute; left: 70%; top: 15%; transform: translate(-50%)"
+>
+  <mat-card
+    style="
+      width: 60vw;
+      height: 80vh;
+      box-shadow: 1px 1px 6px black;
+      filter: drop-shadow(1px 1px 6px black);
+    "
+  >
     <mat-card-header>
-        <mat-card-title
-        ><span *ngIf="data.name.firstName !=='' ">{{ data.name.firstName }} {{data.name.lastName}}</span>
-         <span *ngIf="data.name.firstName =='' ">{{ firstName.value }} {{ lastName.value }}</span>
-        <mat-icon color="primary">verified</mat-icon></mat-card-title
+      <mat-card-title
+        ><span *ngIf="data.name.firstName !== ''"
+          >{{ data.name.firstName }} {{ data.name.lastName }}</span
         >
-        <mat-card-subtitle><span *ngIf="data.id !=='' ">{{data.id}}</span><span *ngIf="data.id =='' ">{{ idNumber }}</span>( IdNumber*)</mat-card-subtitle></mat-card-header
+        <span *ngIf="data.name.firstName == ''"
+          >{{ firstName.value }} {{ lastName.value }}</span
+        >
+        <mat-icon color="primary">verified</mat-icon></mat-card-title
+      >
+      <mat-card-subtitle
+        ><span *ngIf="data.id !== ''">{{ data.id }}</span
+        ><span *ngIf="data.id == ''">{{ idNumber }}</span
+        >( IdNumber*)</mat-card-subtitle
+      ></mat-card-header
     >
-    <form [formGroup]="regForm" (ngSubmit)="Onprocess();">
-    <mat-card-content>
+    <form [formGroup]="regForm" (ngSubmit)="Onprocess()">
+      <mat-card-content>
         <div formGroupName="name">
+          <mat-form-field class="m-3">
+            <mat-label>First Name</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="firstName"
+              #firstName
+              [ngClass]="{
+                error:
+                  getcontrol('firstName')?.errors &&
+                  getcontrol('firstName')?.touched
+              }"
+            />
+            <button
+              *ngIf="firstName.value"
+              matSuffix
+              mat-icon-button
+              aria-label="clear"
+              (click)="firstName.value = ''"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-hint
+              class="text text-danger"
+              *ngIf="((getcontrol('name')?.get('firstName')?.errors && getcontrol('name')?.get('firstName')?.touched) && (getcontrol('name')?.get('firstName')?.errors?.['required']))"
+              >First name is required</mat-hint
+            >
+            <mat-hint
+              class="text text-danger"
+              *ngIf="((getcontrol('name')?.get('firstName')?.errors && getcontrol('name')?.get('firstName')?.touched) && (getcontrol('name')?.get('firstName')?.errors?.['maxlength']))"
+              >Exceeding max length</mat-hint
+            >
+          </mat-form-field>
 
-            <mat-form-field class="m-3">
-                <mat-label>First Name</mat-label>
-                <input type="text" matInput formControlName="firstName" #firstName [ngClass]="{error : getcontrol('firstName')?.errors && getcontrol('firstName')?.touched}" />
-                <button *ngIf='firstName.value' matSuffix mat-icon-button aria-label='clear' (click)="firstName.value=''" >
-                    <mat-icon>close</mat-icon>
-                </button>
-                    <mat-hint class="text text-danger" *ngIf="((getcontrol('name')?.get('firstName')?.errors && getcontrol('name')?.get('firstName')?.touched) && (getcontrol('name')?.get('firstName')?.errors?.['required']))">First name is required</mat-hint>
-                    <mat-hint class="text text-danger" *ngIf="((getcontrol('name')?.get('firstName')?.errors && getcontrol('name')?.get('firstName')?.touched) && (getcontrol('name')?.get('firstName')?.errors?.['maxlength']))">Exceeding max length</mat-hint>
-            </mat-form-field>
-
-            <mat-form-field >
-                <mat-label>Last Name</mat-label>
-                <input type="text" matInput formControlName="lastName" #lastName />
-                    <button *ngIf='lastName.value' matSuffix mat-icon-button aria-label='clear' (click)="lastName.value=''" >
-                        <mat-icon>close</mat-icon>
-                    </button>
-                <mat-hint class="text text-danger" *ngIf="((getcontrol('name')?.get('lastName')?.errors && getcontrol('name')?.get('lastName')?.touched) && (getcontrol('name')?.get('lastName')?.errors?.['required']))">First name is required</mat-hint>
-                    <mat-hint class="text text-danger" *ngIf="((getcontrol('name')?.get('lastName')?.errors && getcontrol('name')?.get('lastName')?.touched) && (getcontrol('name')?.get('lastName')?.errors?.['maxlength']))">Exceeding max length</mat-hint>
-            </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput formControlName="lastName" #lastName />
+            <button
+              *ngIf="lastName.value"
+              matSuffix
+              mat-icon-button
+              aria-label="clear"
+              (click)="lastName.value = ''"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-hint
+              class="text text-danger"
+              *ngIf="((getcontrol('name')?.get('lastName')?.errors && getcontrol('name')?.get('lastName')?.touched) && (getcontrol('name')?.get('lastName')?.errors?.['required']))"
+              >First name is required</mat-hint
+            >
+            <mat-hint
+              class="text text-danger"
+              *ngIf="((getcontrol('name')?.get('lastName')?.errors && getcontrol('name')?.get('lastName')?.touched) && (getcontrol('name')?.get('lastName')?.errors?.['maxlength']))"
+              >Exceeding max length</mat-hint
+            >
+          </mat-form-field>
         </div>
 
-        <mat-radio-group aria-label="Select an option" formControlName="gender" [ngClass]="{error : getcontrol('gender')?.errors && getcontrol('gender')?.touched}">
-            <mat-radio-button value="male">Male</mat-radio-button>
-            <mat-radio-button value="female">Female</mat-radio-button>
-            <mat-radio-button value="others">Others</mat-radio-button>
+        <mat-radio-group
+          aria-label="Select an option"
+          formControlName="gender"
+          [ngClass]="{
+            error: getcontrol('gender')?.errors && getcontrol('gender')?.touched
+          }"
+        >
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="others">Others</mat-radio-button>
         </mat-radio-group>
 
-        <mat-form-field class="phone-field m-3 ">
-            <mat-label>Telephone</mat-label>
-            <span matPrefix>+91 &nbsp;</span>
-            <input type="tel" pattern="[0-9]*" maxlength="10" matInput formControlName="phoneNumber" placeholder="987654328" [ngClass]="{error : getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched}" inputmode="numeric" />
-            <mat-icon matSuffix>mode_edit</mat-icon>
-                <mat-hint class="text text-danger" *ngIf="(getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched) && (getcontrol('phoneNumber')?.errors?.['required'])">Number is required</mat-hint>    
-                <mat-hint class="text text-danger" *ngIf="(getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched) && (getcontrol('phoneNumber')?.errors?.['maxlength'] || getcontrol('phoneNumber')?.errors?.['minlength'] )">Number must be 10 digit</mat-hint>
-                <mat-hint class="text text-danger" *ngIf="(getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched) && (getcontrol('phoneNumber')?.errors?.['pattern'])" >Enter valid number</mat-hint>
+        <mat-form-field class="phone-field m-3">
+          <mat-label>Telephone</mat-label>
+          <span matPrefix>+91 &nbsp;</span>
+          <input
+            type="tel"
+            pattern="[0-9]*"
+            maxlength="10"
+            matInput
+            formControlName="phoneNumber"
+            placeholder="987654328"
+            [ngClass]="{
+              error:
+                getcontrol('phoneNumber')?.errors &&
+                getcontrol('phoneNumber')?.touched
+            }"
+            inputmode="numeric"
+          />
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint
+            class="text text-danger"
+            *ngIf="(getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched) && (getcontrol('phoneNumber')?.errors?.['required'])"
+            >Number is required</mat-hint
+          >
+          <mat-hint
+            class="text text-danger"
+            *ngIf="(getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched) && (getcontrol('phoneNumber')?.errors?.['maxlength'] || getcontrol('phoneNumber')?.errors?.['minlength'] )"
+            >Number must be 10 digit</mat-hint
+          >
+          <mat-hint
+            class="text text-danger"
+            *ngIf="(getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched) && (getcontrol('phoneNumber')?.errors?.['pattern'])"
+            >Enter valid number</mat-hint
+          >
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" maxlength="56" #emailRef [ngClass]="{error : getcontrol('email')?.errors && getcontrol('email')?.touched}" />
-            <mat-error *ngIf="regForm.get('email')?.hasError('email') && !regForm.get('email')?.hasError('required')">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            formControlName="email"
+            placeholder="Ex. pat@example.com"
+            maxlength="56"
+            #emailRef
+            [ngClass]="{
+              error: getcontrol('email')?.errors && getcontrol('email')?.touched
+            }"
+          />
+          <mat-error
+            *ngIf="
+              regForm.get('email')?.hasError('email') &&
+              !regForm.get('email')?.hasError('required')
+            "
+          >
             Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="regForm.get('email')?.hasError('required')">
+          </mat-error>
+          <mat-error *ngIf="regForm.get('email')?.hasError('required')">
             Email is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="regForm.get('email')?.hasError('pattern')">
-                Email is <strong>not Valid</strong>
-                </mat-error>
-            <mat-hint align="end">{{emailRef.value.length}} / 56</mat-hint>
+          </mat-error>
+          <mat-error *ngIf="regForm.get('email')?.hasError('pattern')">
+            Email is <strong>not Valid</strong>
+          </mat-error>
+          <mat-hint align="end">{{ emailRef.value.length }} / 56</mat-hint>
         </mat-form-field>
-    
 
         <mat-form-field class="m-3">
-            <mat-label>Date Of Birth</mat-label>
-            <input
+          <mat-label>Date Of Birth</mat-label>
+          <input
             type="date"
             matNativeControl
             placeholder="MM-DD-YYYY"
             formControlName="dateOfBirth"
-            />
-            <mat-hint>ex: 31-03-2003</mat-hint>
+          />
+          <mat-hint>ex: 31-03-2003</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" id="userPassword" required minlength="8" maxlength="12"  name="userPassword" formControlName="password" #password [ngClass]="{error : getcontrol('password')?.errors && getcontrol('password')?.touched} "/>
-          
-            <mat-icon matSuffix title="Reset Password" (click)="hidePassword =! hidePassword">{{ hidePassword ? 'visibility ' : 'visibility_off'}}</mat-icon>
-                <mat-hint class="text text-danger" *ngIf="((getcontrol('password')?.errors && getcontrol('password')?.touched) && (getcontrol('password')?.errors?.['required']))"> Enter password</mat-hint>
-                <mat-hint class="text text-danger" *ngIf="((getcontrol('password')?.errors && getcontrol('password')?.touched) && (getcontrol('password')?.errors?.['maxlength'] || getcontrol('password')?.errors?.['minlength'])) ">Password should min 8 and max 12</mat-hint>
-           
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            id="userPassword"
+            required
+            minlength="8"
+            maxlength="12"
+            name="userPassword"
+            formControlName="password"
+            #password
+            [ngClass]="{
+              error:
+                getcontrol('password')?.errors &&
+                getcontrol('password')?.touched
+            }"
+          />
+
+          <mat-icon
+            matSuffix
+            title="Reset Password"
+            (click)="hidePassword = !hidePassword"
+            >{{ hidePassword ? "visibility " : "visibility_off" }}</mat-icon
+          >
+          <mat-hint
+            class="text text-danger"
+            *ngIf="((getcontrol('password')?.errors && getcontrol('password')?.touched) && (getcontrol('password')?.errors?.['required']))"
+          >
+            Enter password</mat-hint
+          >
+          <mat-hint
+            class="text text-danger"
+            *ngIf="((getcontrol('password')?.errors && getcontrol('password')?.touched) && (getcontrol('password')?.errors?.['maxlength'] || getcontrol('password')?.errors?.['minlength'])) "
+            >Password should min 8 and max 12</mat-hint
+          >
         </mat-form-field>
-    
-        
-    </mat-card-content>
+      </mat-card-content>
 
-    <mat-card-actions>
-        <button mat-button color="warn" (click)="GotoBack()">Cancel<mat-icon>cancel</mat-icon></button>
-            <button mat-button class="text text-success" type="submit" [disabled]="regForm.invalid">
-        Save & Exit<mat-icon>save</mat-icon>
+      <mat-card-actions>
+        <button mat-button color="warn" (click)="GotoBack()">
+          Cancel<mat-icon>cancel</mat-icon>
         </button>
-    </mat-card-actions>
-
- 
+        <button
+          mat-button
+          class="text text-success"
+          type="submit"
+          [disabled]="regForm.invalid"
+        >
+          Save & Exit<mat-icon>save</mat-icon>
+        </button>
+      </mat-card-actions>
     </form>
-    </mat-card>
+  </mat-card>
 </div>
