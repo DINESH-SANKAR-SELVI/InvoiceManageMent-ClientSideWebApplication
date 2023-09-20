@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, Validators } from '@angular/forms';
 import { DataProviderService, TableType } from '../data-provider.service';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Event, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -53,10 +53,9 @@ export class CreateUserComponent {
     this.route.navigate(['DashBoard']);
   }
 
-  GotoBack() {
+  GotoBack(event:any) {
+    event.preventDefault();
     this.regForm.reset();
-    // this.route.navigate(["../.."],{relativeTo: this.currentPath});
-    this.route.navigate(['DashBoard']);
   }
    
   getcontrol(name: any): AbstractControl | null {

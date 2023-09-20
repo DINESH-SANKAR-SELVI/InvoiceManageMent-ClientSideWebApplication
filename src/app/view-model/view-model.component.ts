@@ -76,10 +76,9 @@ export class ViewModelComponent {
     this.route.navigate(['/DashBoard']);
   }
 
-  GotoBack() {
-    this.regForm.reset();
-    this.regForm.disabled;
-    this.route.navigate([".."],{relativeTo: this.currentPath});
+  GoToBack(event:any){
+    event.preventDefault();
+
   }
    
   getcontrol(name: any): AbstractControl | null {
