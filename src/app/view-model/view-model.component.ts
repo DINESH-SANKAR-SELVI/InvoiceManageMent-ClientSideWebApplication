@@ -78,6 +78,7 @@ export class ViewModelComponent {
 
   GotoBack() {
     this.regForm.reset();
+    this.regForm.disabled;
     this.route.navigate([".."],{relativeTo: this.currentPath});
   }
    

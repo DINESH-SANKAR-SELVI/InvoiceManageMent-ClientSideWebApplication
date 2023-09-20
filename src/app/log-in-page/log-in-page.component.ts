@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { RegisterPageComponent } from '../register-page/register-page.component';
 
 export type loginType = {
   UserName: string;
@@ -37,6 +39,13 @@ export class LogInPageComponent {
     this.way.navigate(['Register']);
   }
 
-  constructor(private way: Router) { }
+  constructor(private way: Router, public dialog: MatDialog) { }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(RegisterPageComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

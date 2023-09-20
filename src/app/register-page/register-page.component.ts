@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataProviderService } from '../data-provider.service';
+import { LoaderService } from '../loader.service';
 
 @Component({
   selector: 'app-register-page',
@@ -11,7 +12,7 @@ import { DataProviderService } from '../data-provider.service';
 })
 export class RegisterPageComponent {
 
-  constructor(private forms: FormBuilder,private route:Router, private dataProvider : DataProviderService) { }
+  constructor(private forms: FormBuilder,private route:Router, private dataProvider : DataProviderService, public load: LoaderService) { }
 
   idNumber:string = this.generateRandomId();
 

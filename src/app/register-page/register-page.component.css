@@ -1,9 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+:host h1,h2,h3,h4,h5,h6,p,div,mat-form-field ,mat-label, span{
+    font-family: var(--font-style);
+}
 
 ::ng-deep :root {
     --font-style:'Playfair Display', serif;
 }
-h1 ,h3 ,div {
+h1 ,h3 ,div ,label{
     font-family: var(--font-style);
 }
 
@@ -39,4 +43,4 @@ section {
     padding: 2rem;
 
     position: relative;
-}
+} */

@@ -1,3 +1,9 @@
+
+<div class="load-contain" *ngIf="load.isLoad | async">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+     <mat-spinner class="position-absolute top-50 start-50 translate-middle" ></mat-spinner>
+  </div>
+  
 <div class="container" style="position: absolute;left:70%;top:15%;transform: translate(-50%);">
     <mat-card style="width: 60vw; height: 80vh;box-shadow: 1px 1px 6px black;filter:drop-shadow(1px 1px 6px black);">
     <mat-card-header>
@@ -42,7 +48,7 @@
         <mat-form-field class="phone-field m-3 ">
             <mat-label>Telephone</mat-label>
             <span matPrefix>+91 &nbsp;</span>
-            <input type="tel" maxlength="10" matInput formControlName="phoneNumber" placeholder="987654328" [ngClass]="{error : getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched}" />
+            <input type="tel" pattern="[0-9]*" maxlength="10" matInput formControlName="phoneNumber" placeholder="987654328" [ngClass]="{error : getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched}" inputmode="numeric" />
             <mat-icon matSuffix>mode_edit</mat-icon>
                 <mat-hint class="text text-danger" *ngIf="(getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched) && (getcontrol('phoneNumber')?.errors?.['required'])">Number is required</mat-hint>    
                 <mat-hint class="text text-danger" *ngIf="(getcontrol('phoneNumber')?.errors && getcontrol('phoneNumber')?.touched) && (getcontrol('phoneNumber')?.errors?.['maxlength'] || getcontrol('phoneNumber')?.errors?.['minlength'] )">Number must be 10 digit</mat-hint>

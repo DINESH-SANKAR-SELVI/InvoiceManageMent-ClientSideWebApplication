@@ -11,8 +11,7 @@ export class ViewEmployeeComponent {
 
   data: TableType[] |undefined; 
 
-  constructor (private dataProvider: DataProviderService,private route: Router, private currentURL: ActivatedRoute) { 
-
+  constructor (private dataProvider: DataProviderService,private route: Router, private currentURL: ActivatedRoute ) { 
     this.dataProvider.getAllUser().subscribe( (result)=>{ this.data=result; })
   }
 

@@ -1,9 +1,9 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimations, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,6 +27,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { InterceptorService } from './interceptor.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,7 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,    
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
@@ -61,9 +66,12 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
-  providers: [ provideAnimations() ],
+  providers: [ {provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

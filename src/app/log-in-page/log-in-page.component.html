@@ -30,7 +30,7 @@
 
       <div class="form-group" class="w-80" style="display: flex;flex-direction: column;align-items: center;">
         <button type="submit" mat-stroked-button color="primary" [disabled]="(!(userName.value && userPassword.value)) || SignIn.invalid"  ><mat-icon>done_all</mat-icon>Get In</button><div class="m-3" style="width:100%; border-bottom: 1px solid black;"></div>
-        <span> Not A Member ?<a  class="m-2" mat-raised-button (click)="GotoRegister()"> Register</a></span>
+        <span> Not A Member ?<a  class="m-2" mat-raised-button (click)="openDialog()" > Register</a></span>
       </div>
     </form>
     <hr />

@@ -1,3 +1,4 @@
+import { LoaderService } from './../loader.service';
 import { Component } from '@angular/core';
 import { AbstractControl, Validators } from '@angular/forms';
 import { DataProviderService, TableType } from '../data-provider.service';
@@ -43,7 +44,7 @@ export class CreateUserComponent {
     password: ['' ,Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32)])]
   });
 
-  constructor ( private dataProvider : DataProviderService, private forms:FormBuilder,private route:Router ,private currentPath: ActivatedRoute) { }
+  constructor ( private dataProvider : DataProviderService, private forms:FormBuilder,private route:Router ,private currentPath: ActivatedRoute, public load: LoaderService) { }
 
   Onprocess() {
     let vaa = JSON.parse(JSON.stringify(this.regForm.value));
@@ -54,7 +55,8 @@ export class CreateUserComponent {
 
   GotoBack() {
     this.regForm.reset();
-    this.route.navigate([".."],{relativeTo: this.currentPath});
+    // this.route.navigate(["../.."],{relativeTo: this.currentPath});
+    this.route.navigate(['DashBoard']);
   }
    
   getcontrol(name: any): AbstractControl | null {
