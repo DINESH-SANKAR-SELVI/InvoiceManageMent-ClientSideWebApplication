@@ -1,0 +1,216 @@
+<div class="container position-relative top-0 start-0">
+
+    <mat-card class="example-card">
+        <mat-card-header class="d-flex justify-content-center">
+          <mat-card-title class="text text-center text-success ">Invoice Page</mat-card-title>
+          <mat-card-subtitle class="text text-center">Good Morning, Thank You..! ComeAgain</mat-card-subtitle>
+        </mat-card-header>
+        <form [formGroup]="PurchaseDetail" (ngSubmit)="onProcess()">
+        <mat-card-content>
+            <!--forms-->
+                <div class="row">
+                <div formGroupName="name" class="col">
+                    <div class="row">
+                      <mat-form-field class="m-3 col">
+                        <mat-label>First Name</mat-label>
+                        <input
+                          type="text"
+                          matInput
+                          formControlName="firstName"
+                          #firstName
+                          [ngClass]="{
+                            error:
+                              getcontrol('firstName')?.errors &&
+                              getcontrol('firstName')?.touched
+                          }"
+                        />
+                        <button
+                          *ngIf="firstName.value"
+                          matSuffix
+                          mat-icon-button
+                          aria-label="clear"
+                          (click)="firstName.value = ''"
+                        >
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-hint
+                          class="text text-danger"
+                          *ngIf="((getcontrol('name')?.get('firstName')?.errors && getcontrol('name')?.get('firstName')?.touched) && (getcontrol('name')?.get('firstName')?.errors?.['required']))"
+                          >First name is required</mat-hint
+                        >
+                        <mat-hint
+                          class="text text-danger"
+                          *ngIf="((getcontrol('name')?.get('firstName')?.errors && getcontrol('name')?.get('firstName')?.touched) && (getcontrol('name')?.get('firstName')?.errors?.['maxlength']))"
+                          >Exceeding max length</mat-hint
+                        >
+                      </mat-form-field>
+        
+                      <mat-form-field class="col m-3">
+                        <mat-label>Last Name</mat-label>
+                        <input type="text" matInput formControlName="lastName" #lastName />
+                        <button
+                          *ngIf="lastName.value"
+                          matSuffix
+                          mat-icon-button
+                          aria-label="clear"
+                          (click)="lastName.value = ''"
+                        >
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-hint
+                          class="text text-danger"
+                          *ngIf="((getcontrol('name')?.get('lastName')?.errors && getcontrol('name')?.get('lastName')?.touched) && (getcontrol('name')?.get('lastName')?.errors?.['required']))"
+                          >First name is required</mat-hint
+                        >
+                        <mat-hint
+                          class="text text-danger"
+                          *ngIf="((getcontrol('name')?.get('lastName')?.errors && getcontrol('name')?.get('lastName')?.touched) && (getcontrol('name')?.get('lastName')?.errors?.['maxlength']))"
+                          >Exceeding max length</mat-hint
+                        >
+                      </mat-form-field>
+                    </div>
+                </div>
+                </div>
+                <div formGroupName="address" class="row">
+                    <!-- three for address country state city -->
+                    <div class="col m-3">
+                    <h4>Country</h4>
+                    <mat-form-field class="w-100">
+                      <mat-label>Ex: India</mat-label>
+                      <mat-select (valueChange)="changeStates($event)" formControlName="country" >
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let Country of Countries" [value]="Country.code">{{Country.desc}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col m-3">
+                    <h4>State</h4>
+                    <mat-form-field class="w-100" >
+                      <mat-label>Ex: TamilNadu</mat-label>
+                      <mat-select (valueChange)="changeCities($event)" formControlName="state">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let state of states" [value]="state.code">{{state.desc}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col m-3">
+                    <h4>City</h4>
+                    <mat-form-field class="w-100">
+                      <mat-label>Ex: Chennai</mat-label>
+                      <mat-select formControlName="city">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let city of Cities" [value]="city.desc">{{city.desc}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+                <!-- four field for deliveryDate purchaseDate customerOrderNo invoiceAmount -->
+            <div class="row">
+                <mat-form-field class="example-form-field m-3 col">
+                    <mat-label>Choose Delivery Date</mat-label>
+                    <input matInput [matDatepicker]="datepicker" formControlName="deliveryDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                  </mat-form-field>
+
+                  <mat-form-field class="example-form-field m-3 col">
+                    <mat-label>Choose Purchase Date</mat-label>
+                    <input matInput [matDatepicker]="datepicker2" formControlName="purchaseDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="datepicker2"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker2>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="row">
+                <mat-form-field class="m-3 col">
+                    <mat-label>customer Order No</mat-label>
+                    <input
+                      type="number"
+                      pattern="[0-9]*"
+                      matInput
+                      formControlName="customerOrderNo"
+                      placeholder="673678268726"
+                      [ngClass]="{
+                        error:
+                          getcontrol('customerOrderNo')?.errors &&
+                          getcontrol('customerOrderNo')?.touched
+                      }"
+                      inputmode="numeric"
+                    />
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-hint
+                      class="text text-danger"
+                      *ngIf="(getcontrol('customerOrderNo')?.errors && getcontrol('customerOrderNo')?.touched) && (getcontrol('customerOrderNo')?.errors?.['required'])"
+                      >Number is required</mat-hint
+                    >
+                    <mat-hint
+                      class="text text-danger"
+                      *ngIf="(getcontrol('customerOrderNo')?.errors && getcontrol('customerOrderNo')?.touched) && (getcontrol('customerOrderNo')?.errors?.['pattern'])"
+                      >Enter valid number</mat-hint
+                    >
+                  </mat-form-field>
+          
+                  
+                <mat-form-field class="m-3 col">
+                    <mat-label>Invoice Amount</mat-label>
+                    <span matPrefix class="m-2" style="font-weight: bolder;">&#8377;</span>
+                    <input
+                      type="tel"
+                      pattern="[0-9]*"
+                      minlength="1"
+                      maxlength="10"
+                      matInput
+                      formControlName="invoiceAmount"
+                      placeholder="673678268726"
+                      [ngClass]="{
+                        error:
+                          getcontrol('invoiceAmount')?.errors &&
+                          getcontrol('invoiceAmount')?.touched
+                      }"
+                      inputmode="numeric"
+                    />
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-hint
+                      class="text text-danger"
+                      *ngIf="(getcontrol('invoiceAmount')?.errors && getcontrol('invoiceAmount')?.touched) && (getcontrol('invoiceAmount')?.errors?.['required'])"
+                      >Number is required</mat-hint
+                    >
+                    <mat-hint
+                      class="text text-danger"
+                      *ngIf="(getcontrol('invoiceAmount')?.errors && getcontrol('invoiceAmount')?.touched) && (getcontrol('invoiceAmount')?.errors?.['maxlength'] || getcontrol('invoiceAmount')?.errors?.['minlength'] )"
+                      >Amount must be LesserThen 10cr.</mat-hint
+                    >
+                    <mat-hint
+                      class="text text-danger"
+                      *ngIf="(getcontrol('invoiceAmount')?.errors && getcontrol('invoiceAmount')?.touched) && (getcontrol('invoiceAmount')?.errors?.['pattern'])"
+                      >Enter valid number</mat-hint
+                    >
+                  </mat-form-field>
+            </div>
+            
+
+          <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="button" mat-button color="warn" (click)="cancel($event)">Cancel</button>
+          <button type="submit" mat-raised-button color="primary" [disabled]="!(PurchaseDetail.valid)">Save</button>
+        </mat-card-actions>
+      </form>
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate" *ngIf="load.isLoad | async"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+      
+</div>

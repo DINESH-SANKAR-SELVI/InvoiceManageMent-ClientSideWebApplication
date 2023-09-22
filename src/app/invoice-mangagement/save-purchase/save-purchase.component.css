@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+:host h1,h2,h3,h4,h5,h6,p,div,mat-form-field ,mat-label, span ,label ,mat-card-title ,mat-card-subtitle {
+    font-family: var(--font-style);
+}
+:host mat-card-title {
+    font-size: xx-large;
+    font-weight: bolder;
+    filter: drop-shadow(1px 1px 2px black);
+}
+:host h4 {
+    font-weight: bolder;
+}
+
+:host mat-card-subtitle {
+
+    filter: drop-shadow(1px 1px 2px black);
+}
+
+
+::ng-deep :root {
+    --font-style:'Playfair Display', serif;
+}
+h1 ,h3 ,div ,label{
+    font-family: var(--font-style);
+}
+
+h1 {
+    font-size: xx-large;
+}

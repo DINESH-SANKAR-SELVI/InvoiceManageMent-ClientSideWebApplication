@@ -47,18 +47,160 @@
       "email": "d@gmail.com",
       "phoneNumber": "7604829520",
       "password": "1234567890"
+    }
+  ],
+  "Purchase": [
+    {
+      "id": "1",
+      "name": {
+        "firstName": "DINESH",
+        "lastName": "SANKAR"
+      },
+      "address": {
+        "country": "IN",
+        "state": "TN",
+        "city": "CH"
+      },
+      "deliveryDate": "Sep/12/2023",
+      "purchaseDate": "Sep/12/2023",
+      "customerOrderNo": 897,
+      "invoiceAmount": "76567"
     },
     {
-      "id": "702716",
+      "id": "din0110",
       "name": {
-        "firstName": "qwert",
-        "lastName": "yuiop"
+        "firstName": "q",
+        "lastName": "22"
       },
-      "gender": "others",
-      "dateOfBirth": "1111-11-11",
-      "email": "s1@g.com",
-      "phoneNumber": 1234567890,
-      "password": "111111111111"
+      "address": {
+        "country": "IN",
+        "state": "TN",
+        "city": "Chennai"
+      },
+      "deliveryDate": "2023-09-21T18:30:00.000Z",
+      "purchaseDate": "2023-09-21T18:30:00.000Z",
+      "customerOrderNo": 12,
+      "invoiceAmount": "12"
+    },
+    {
+      "id": "9IS9Z_V",
+      "name": {
+        "firstName": "q",
+        "lastName": "ww"
+      },
+      "address": {
+        "country": "IN",
+        "state": "TN",
+        "city": "Chennai"
+      },
+      "deliveryDate": "2023-09-21T18:30:00.000Z",
+      "purchaseDate": "2023-09-21T18:30:00.000Z",
+      "customerOrderNo": 12,
+      "invoiceAmount": "12"
+    },
+    {
+      "id": "941253",
+      "name": {
+        "firstName": "q",
+        "lastName": "1"
+      },
+      "address": {
+        "country": "IN",
+        "state": "TN",
+        "city": "Chennai"
+      },
+      "deliveryDate": "2023-09-21T18:30:00.000Z",
+      "purchaseDate": "2023-09-21T18:30:00.000Z",
+      "customerOrderNo": 12,
+      "invoiceAmount": "12"
+    },
+    {
+      "id": "539547",
+      "name": {
+        "firstName": "q",
+        "lastName": "q"
+      },
+      "address": {
+        "country": "IN",
+        "state": "TN",
+        "city": "Chennai"
+      },
+      "deliveryDate": "2023-09-21T18:30:00.000Z",
+      "purchaseDate": "2023-09-12T18:30:00.000Z",
+      "customerOrderNo": 2,
+      "invoiceAmount": "1"
+    },
+    {
+      "id": "940604",
+      "name": {
+        "firstName": "q",
+        "lastName": "w"
+      },
+      "address": {
+        "country": "IN",
+        "state": "TN",
+        "city": "Chennai"
+      },
+      "deliveryDate": "2023-09-21T18:30:00.000Z",
+      "purchaseDate": "2023-09-21T18:30:00.000Z",
+      "customerOrderNo": 12,
+      "invoiceAmount": "12"
+    }
+  ],
+  "invoice": [
+    {
+      "id": "765623",
+      "Sn": 1,
+      "ItemName": "apple",
+      "Toqty": 1,
+      "uom": "KG",
+      "price": 120,
+      "amount": 120
+    },
+    {
+      "id": "474012",
+      "Sn": "2",
+      "ItemName": "apple",
+      "Toqty": 1,
+      "uom": "KG",
+      "price": 120,
+      "amount": 120
+    },
+    {
+      "id": "677416",
+      "Sn": "1",
+      "ItemName": "apple",
+      "Toqty": 1,
+      "uom": "KG",
+      "price": 120,
+      "amount": 120
+    },
+    {
+      "id": "813718",
+      "Sn": "2",
+      "ItemName": "apple",
+      "Toqty": 1,
+      "uom": "KG",
+      "price": 120,
+      "amount": 120
+    },
+    {
+      "id": "535513",
+      "Sn": "1",
+      "ItemName": "apple",
+      "Toqty": "5",
+      "uom": "KG",
+      "price": 120,
+      "amount": 600
+    },
+    {
+      "id": "175063",
+      "Sn": "2",
+      "ItemName": "apple",
+      "Toqty": "10",
+      "uom": "KG",
+      "price": 120,
+      "amount": 1200
     }
   ]
 }

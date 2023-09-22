@@ -1,9 +1,9 @@
-<div class="load-contain" *ngIf="load.isLoad | async">
+<!-- <div class="load-contain" *ngIf="load.isLoad | async">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   <mat-spinner
     class="position-absolute top-50 start-50 translate-middle"
   ></mat-spinner>
-</div>
+</div> -->
 
 <div [@routeAnimations]="getRouteAnimationData()">
   <router-outlet></router-outlet>

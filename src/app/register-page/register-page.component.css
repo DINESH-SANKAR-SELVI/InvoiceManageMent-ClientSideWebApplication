@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
-:host h1,h2,h3,h4,h5,h6,p,div,mat-form-field ,mat-label, span{
+:host h1,h2,h3,h4,h5,h6,p,div,mat-form-field ,mat-label, span ,label{
     font-family: var(--font-style);
 }
 

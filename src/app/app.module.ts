@@ -25,6 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 
+import { InvoiceMangagementModule } from './invoice-mangagement/invoice-mangagement.module';
+
 import { AppComponent } from './app.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LogInPageComponent } from './log-in-page/log-in-page.component';
@@ -75,7 +77,8 @@ import { DropDownTaskComponent } from './drop-down-task/drop-down-task.component
     MatProgressSpinnerModule,
     MatDialogModule,
     MatDividerModule,
-    MatSelectModule
+    MatSelectModule,
+    InvoiceMangagementModule
   ],
   providers: [ {provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true} ],
   bootstrap: [AppComponent]

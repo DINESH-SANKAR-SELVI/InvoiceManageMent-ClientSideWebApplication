@@ -1,0 +1,63 @@
+<section class="container">
+  <form [formGroup]="profileForm">
+    <mat-card>
+      <mat-card-header class="d-flex justify-content-center text text-center">
+        <mat-card-title>Invoice Bill</mat-card-title>
+        <mat-card-subtitle>You Can add & Modify Item</mat-card-subtitle>
+      </mat-card-header>
+      <mat-dialog-content>
+          <div class="m-1 p-2">
+            <button type="button" mat-raised-button  class="demo-button" (click)="addAlias()"><mat-icon>add_shopping_cart</mat-icon>
+              Add Items
+            </button>
+          </div>
+          <!-- <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Sn</th>
+                <th>ItemName</th>
+                <th>Toqty</th>
+                <th>uom</th>
+                <th>price</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+           -->
+          <!-- <div class="container"> -->
+          <div formArrayName="aliases">
+            <div class="row w-100">
+                <div class="col">id</div>
+                <div class="col">Sn</div>
+                <div class="col">ItemName</div>
+                <div class="col">Toqty</div>
+                <div class="col">uom</div>
+                <div class="col">price</div>
+                <div class="col">amount</div>
+            </div>
+            <!-- <tbody> -->
+              
+          <div *ngFor="let alias of aliases.controls; let i=index" [formGroupName]="i">
+            <div class="row w-100">
+              <div class="col"><input formControlName="id" /></div>
+              <div class="col"><input formControlName="Sn" /></div>
+              <div class="col"><input formControlName="ItemName" /></div>
+              <div class="col"><input (change)="amountChange(i)" formControlName="Toqty" /></div>
+              <div class="col"><input formControlName="uom" /></div>
+              <div class="col"><input (change)="amountChange(i)" formControlName="price" /></div>
+              <div class="col"><input formControlName="amount" /></div>
+            </div>
+          </div>
+        <!-- </tbody> -->
+        </div>
+      <!-- </div> -->
+      <!-- </table> -->
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Close</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="showAndPostData($event)">Save & Next</button>
+      </mat-dialog-actions>
+
+  </mat-card>
+  </form>
+</section>
