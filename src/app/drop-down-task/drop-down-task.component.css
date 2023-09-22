@@ -1,9 +1,0 @@
-@import url('https://fonts.googleapis.com/css2?family=Mooli&family=Roboto+Slab:wght@600&family=Roboto:wght@300&display=swap');
-
-::ng-deep :root {
-    --font-style: 'Roboto Slab', serif;
-}
-
-mat-card-title , mat-card-subtitle ,:host h4 ,mat-select ,mat-option ,mat-label{
-    font-family: var(--font-style);
-}

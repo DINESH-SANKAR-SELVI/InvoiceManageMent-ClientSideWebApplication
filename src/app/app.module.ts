@@ -35,7 +35,6 @@ import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import { TableInfoComponent } from './table-info/table-info.component';
 import { ViewModelComponent } from './view-model/view-model.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { DropDownTaskComponent } from './drop-down-task/drop-down-task.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +45,7 @@ import { DropDownTaskComponent } from './drop-down-task/drop-down-task.component
     ViewEmployeeComponent,
     TableInfoComponent,
     ViewModelComponent,
-    CreateUserComponent,
-    DropDownTaskComponent
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

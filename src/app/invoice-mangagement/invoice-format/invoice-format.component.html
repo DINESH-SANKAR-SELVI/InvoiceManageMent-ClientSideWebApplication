@@ -2,31 +2,18 @@
   <form [formGroup]="profileForm">
     <mat-card>
       <mat-card-header class="d-flex justify-content-center text text-center">
-        <mat-card-title>Invoice Bill</mat-card-title>
-        <mat-card-subtitle>You Can add & Modify Item</mat-card-subtitle>
+        <mat-card-title class="text text-warning" style="font-size: xx-large;text-transform: uppercase;font-weight: bolder;">Invoice Bill</mat-card-title>
+        <mat-card-subtitle class="text text-success" style="font-weight: bolder;">You Can add & Modify Item</mat-card-subtitle>
       </mat-card-header>
-      <mat-dialog-content>
+      <mat-dialog-content class="p-5">
           <div class="m-1 p-2">
             <button type="button" mat-raised-button  class="demo-button" (click)="addAlias()"><mat-icon>add_shopping_cart</mat-icon>
               Add Items
             </button>
           </div>
-          <!-- <table>
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>Sn</th>
-                <th>ItemName</th>
-                <th>Toqty</th>
-                <th>uom</th>
-                <th>price</th>
-                <th>amount</th>
-              </tr>
-            </thead>
-           -->
-          <!-- <div class="container"> -->
+          <div class="container">
           <div formArrayName="aliases">
-            <div class="row w-100">
+            <div class="row w-100 text text-center bg-primary rounded m-6">
                 <div class="col">id</div>
                 <div class="col">Sn</div>
                 <div class="col">ItemName</div>
@@ -35,27 +22,24 @@
                 <div class="col">price</div>
                 <div class="col">amount</div>
             </div>
-            <!-- <tbody> -->
               
           <div *ngFor="let alias of aliases.controls; let i=index" [formGroupName]="i">
             <div class="row w-100">
               <div class="col"><input formControlName="id" /></div>
               <div class="col"><input formControlName="Sn" /></div>
               <div class="col"><input formControlName="ItemName" /></div>
-              <div class="col"><input (change)="amountChange(i)" formControlName="Toqty" /></div>
+              <div class="col"><input (change)="amountChange(i)" formControlName="Toqty" autofocus /></div>
               <div class="col"><input formControlName="uom" /></div>
               <div class="col"><input (change)="amountChange(i)" formControlName="price" /></div>
               <div class="col"><input formControlName="amount" /></div>
             </div>
           </div>
-        <!-- </tbody> -->
         </div>
-      <!-- </div> -->
-      <!-- </table> -->
+        </div>
       </mat-dialog-content>
       <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Close</button>
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="showAndPostData($event)">Save & Next</button>
+        <button mat-stroked-button color="warn" class="m-3" mat-dialog-close>Close</button>
+        <button mat-raised-button color="primary" class="m-3" [mat-dialog-close]="true" cdkFocusInitial (click)="showAndPostData($event)">Save & Next</button>
       </mat-dialog-actions>
 
   </mat-card>
