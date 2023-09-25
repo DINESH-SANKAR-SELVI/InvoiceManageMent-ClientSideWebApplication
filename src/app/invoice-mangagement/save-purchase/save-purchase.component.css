@@ -28,3 +28,23 @@ h1 ,h3 ,div ,label{
 h1 {
     font-size: xx-large;
 }
+
+.col input ,.col h3 {
+    text-align: center;
+    padding: 0.5rem;
+    width: calc(100% + 10px);
+    border: none;
+}
+
+div[class='col'] {
+    color: white;
+    font-size: larger;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.5rem;
+
+    border-bottom: 1px solid black;
+}

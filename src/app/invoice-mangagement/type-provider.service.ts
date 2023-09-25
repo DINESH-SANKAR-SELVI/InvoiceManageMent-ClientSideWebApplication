@@ -15,7 +15,7 @@ export interface PurchaseOrder {
   }, 
   deliveryDate:string, 
   purchaseDate:string, 
-  customerOrderNo:number, 
+  customerOrderNo:string, 
   invoiceAmount:number
 }
 

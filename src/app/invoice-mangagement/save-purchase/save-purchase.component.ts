@@ -1,10 +1,8 @@
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { LoaderService } from './../../loader.service';
 import { TypeProviderService, PurchaseOrder } from './../type-provider.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
-import { MatDialog } from '@angular/material/dialog';
-import { InvoiceFormatComponent } from '../invoice-format/invoice-format.component';
 
 @Component({
   selector: 'app-save-purchase',
@@ -33,13 +31,13 @@ export class SavePurchaseComponent implements OnInit {
 
   id = this.generateRandomId();
 
-  PurchaseDetail = this.form.group({
+  PurchaseDetail = this.fb.group({
     id: [this.id],
-    name:this.form.group({
+    name:this.fb.group({
       firstName: ['' ,Validators.compose([Validators.required, Validators.maxLength(32)])],
       lastName: ['' ,Validators.compose([Validators.required, Validators.maxLength(32)])]
     }),
-    address: this.form.group({
+    address: this.fb.group({
       country: ['' ,Validators.compose([Validators.required])],
       state: ['' ,Validators.compose([Validators.required])],
       city: ['' ,Validators.compose([Validators.required])]
@@ -47,10 +45,21 @@ export class SavePurchaseComponent implements OnInit {
     deliveryDate: ['' ,Validators.compose([Validators.required])],
     purchaseDate: ['' ,Validators.compose([Validators.required])],
     customerOrderNo: ['' , Validators.required],
-    invoiceAmount: ['' , Validators.compose([Validators.required, Validators.maxLength(10), Validators.minLength(1)/*, Validators.pattern(this.numberregex)*/])]  
+    invoiceAmount: ['' , Validators.compose([Validators.required, Validators.maxLength(10), Validators.minLength(1)/*, Validators.pattern(this.numberregex)*/])],
+    aliases: this.fb.array([
+      // this.fb.group(  {
+        // id: this.generateRandomId(),
+        // Sn: '1',
+        // ItemName: 'apple',
+        // Toqty: 1,
+        // uom: 'KG',
+        // price: 120,
+        // amount: 120
+      // })
+    ])
   });
 
-  constructor( private TypeProvider: TypeProviderService, public load:LoaderService ,private form: FormBuilder,  public dialog: MatDialog) { }
+  constructor( private TypeProvider: TypeProviderService, public load:LoaderService ,private fb: FormBuilder) { }
 
   ngOnInit():void {
     // console.log(Object.values(this.value));// console.log(Object.entries(this.value)); // console.log(Object.keys(this.value));    
@@ -87,7 +96,7 @@ export class SavePurchaseComponent implements OnInit {
     this.d = this.PurchaseDetail.get('customerOrderNo')?.value;
     // console.log(this.d);
     this.valueArray.push(this.d);
-    this.e = Number(this.PurchaseDetail.get('invoiceAmount')?.value);
+    this.e = String(this.PurchaseDetail.get('invoiceAmount')?.value);
     //console.log(this.e);
     this.valueArray.push(this.e);
 
@@ -97,11 +106,18 @@ export class SavePurchaseComponent implements OnInit {
     console.log(this.valueArray);
 
     let vaa = JSON.parse(JSON.stringify(this.PurchaseDetail.value));
-    this.TypeProvider.PostPurchase(vaa).subscribe((result)=>{console.log(result , "create user")});
+    this.TypeProvider.PostPurchase(vaa).subscribe((result)=>{/*console.log(result , "create user")*/});
+
+    this.showAndPostData();
 
     this.PurchaseDetail.reset();
+    
+    
 
-    this.openDialog();
+  }
+
+  untouch(){
+    this.PurchaseDetail.markAsUntouched();
   }
 
   cancel(event:any): void{ event.preventDefault();
@@ -151,12 +167,61 @@ export class SavePurchaseComponent implements OnInit {
     // console.log(this.Cities);
   }
   
-  
-  openDialog() {
-    const dialogRef = this.dialog.open(InvoiceFormatComponent);
+  profileForm = this.fb.group({
+    aliases: this.fb.array([
+      // this.fb.group(  {
+        // id: this.generateRandomId(),
+        // Sn: '1',
+        // ItemName: 'apple',
+        // Toqty: 1,
+        // uom: 'KG',
+        // price: 120,
+        // amount: 120
+      // })
+    ])
+  });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  invoiceValue:any =[];
+
+  showAndPostData(){
+    console.log("posted and showed");
+    this.invoiceValue = [];
+    
+    for(let i=0;i<(<FormArray>this.PurchaseDetail.get('aliases')).length;i++){
+      let temarr = (Object.values((<FormArray>this.PurchaseDetail.get('aliases')).at(i).value) as unknown as Array<any>);
+      this.invoiceValue.push(temarr);
+
+      let splitValue=((<FormArray>this.PurchaseDetail.get('aliases')).at(i).value);
+      let valueOfInvoice = JSON.parse(JSON.stringify(splitValue));
+      this.TypeProvider.postInvoice(valueOfInvoice).subscribe((result)=>{/*console.log(result, i , "Items added")*/});
+    }
+    console.warn(this.invoiceValue);
+
+    // this.profileForm.reset();
+  }
+
+  amountChange(index:any){
+    let quantity =(<FormArray>this.PurchaseDetail.controls['aliases']).at(index)?.get('Toqty')?.value;
+    let price = (<FormArray>this.PurchaseDetail.controls['aliases']).at(index)?.get('price')?.value;
+    let amountOfFinal = Number( Number(quantity) * Number(price));
+
+    (<FormArray>this.PurchaseDetail.controls['aliases']).at(index)?.get('amount')?.setValue(amountOfFinal);
+    
+    console.log("index",index ,"price", price, "quantity" ,quantity ,"amount",amountOfFinal);
+  }
+  get aliases() {
+    return this.PurchaseDetail.get('aliases') as FormArray;
+  }
+
+  addAlias() {
+    this.aliases.push(this.fb.group(  {
+      id: this.generateRandomId(),
+      Sn: '1',
+      ItemName: 'apple',
+      Toqty: 1,
+      uom: 'KG',
+      price: 120,
+      amount: 120
+    }));
   }
 }

@@ -5,7 +5,7 @@
         <mat-card-title class="text text-warning" style="font-size: xx-large;text-transform: uppercase;font-weight: bolder;">Invoice Bill</mat-card-title>
         <mat-card-subtitle class="text text-success" style="font-weight: bolder;">You Can add & Modify Item</mat-card-subtitle>
       </mat-card-header>
-      <mat-dialog-content class="p-5">
+      <mat-card-content class="p-5">
           <div class="m-1 p-2">
             <button type="button" mat-raised-button  class="demo-button" (click)="addAlias()"><mat-icon>add_shopping_cart</mat-icon>
               Add Items
@@ -36,11 +36,11 @@
           </div>
         </div>
         </div>
-      </mat-dialog-content>
-      <mat-dialog-actions align="end">
+      </mat-card-content>
+      <mat-card-actions align="end">
         <button mat-stroked-button color="warn" class="m-3" mat-dialog-close>Close</button>
         <button mat-raised-button color="primary" class="m-3" [mat-dialog-close]="true" cdkFocusInitial (click)="showAndPostData($event)">Save & Next</button>
-      </mat-dialog-actions>
+      </mat-card-actions>
 
   </mat-card>
   </form>
