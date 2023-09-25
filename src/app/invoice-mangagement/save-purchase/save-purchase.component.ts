@@ -111,13 +111,12 @@ export class SavePurchaseComponent implements OnInit {
     this.showAndPostData();
 
     this.PurchaseDetail.reset();
+
+    setTimeout(() => {
+      window.location.reload();  
+    }, 9000);
     
     
-
-  }
-
-  untouch(){
-    this.PurchaseDetail.markAsUntouched();
   }
 
   cancel(event:any): void{ event.preventDefault();
@@ -191,9 +190,9 @@ export class SavePurchaseComponent implements OnInit {
       let temarr = (Object.values((<FormArray>this.PurchaseDetail.get('aliases')).at(i).value) as unknown as Array<any>);
       this.invoiceValue.push(temarr);
 
-      let splitValue=((<FormArray>this.PurchaseDetail.get('aliases')).at(i).value);
-      let valueOfInvoice = JSON.parse(JSON.stringify(splitValue));
-      this.TypeProvider.postInvoice(valueOfInvoice).subscribe((result)=>{/*console.log(result, i , "Items added")*/});
+      // let splitValue=((<FormArray>this.PurchaseDetail.get('aliases')).at(i).value);
+      // let valueOfInvoice = JSON.parse(JSON.stringify(splitValue));
+      // this.TypeProvider.postInvoice(valueOfInvoice).subscribe((result)=>{/*console.log(result, i , "Items added")*/});
     }
     console.warn(this.invoiceValue);
 
