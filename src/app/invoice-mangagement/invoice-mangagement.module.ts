@@ -18,7 +18,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { InterceptorService } from '../interceptor.service';
 
 import { SavePurchaseComponent } from './save-purchase/save-purchase.component';
-import { InvoiceFormatComponent } from './invoice-format/invoice-format.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -26,7 +25,6 @@ import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     SavePurchaseComponent,
-    InvoiceFormatComponent
   ],
   imports: [
     CommonModule,

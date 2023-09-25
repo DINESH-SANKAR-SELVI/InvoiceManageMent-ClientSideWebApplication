@@ -11,6 +11,18 @@
       "email": "sakthi.siva1008@gmail.com",
       "phoneNumber": 9987654329,
       "password": "S011011."
+    },
+    {
+      "id": "269147",
+      "name": {
+        "firstName": "DINESH",
+        "lastName": "SANKAR"
+      },
+      "gender": "male",
+      "dateOfBirth": "2003-03-31",
+      "email": "ddprofessional31@gmail.com",
+      "phoneNumber": 7604829520,
+      "password": "123456789"
     }
   ],
   "Purchase": [
@@ -54,6 +66,51 @@
           "uom": "KG",
           "price": 120,
           "amount": 120
+        }
+      ]
+    },
+    {
+      "id": "377759",
+      "name": {
+        "firstName": "dinesh",
+        "lastName": "sankar"
+      },
+      "address": {
+        "country": "IN",
+        "state": "TN",
+        "city": "Chennai"
+      },
+      "deliveryDate": "2023-10-30T18:30:00.000Z",
+      "purchaseDate": "2023-09-24T18:30:00.000Z",
+      "customerOrderNo": "dinesh123",
+      "invoiceAmount": 7920,
+      "aliases": [
+        {
+          "id": "479378",
+          "Sn": "1",
+          "ItemName": "apple",
+          "Toqty": "12",
+          "uom": "KG",
+          "price": 120,
+          "amount": 1440
+        },
+        {
+          "id": "830965",
+          "Sn": "1",
+          "ItemName": "apple",
+          "Toqty": "45",
+          "uom": "KG",
+          "price": 120,
+          "amount": 5400
+        },
+        {
+          "id": "227256",
+          "Sn": "1",
+          "ItemName": "apple",
+          "Toqty": "9",
+          "uom": "KG",
+          "price": 120,
+          "amount": 1080
         }
       ]
     }
