@@ -1,5 +1,4 @@
 <div class="container position-relative top-0 start-0">
-
     <mat-card class="example-card">
         <mat-card-header class="d-flex justify-content-center">
           <mat-card-title class="text text-center text-success ">Invoice Page</mat-card-title>
@@ -108,16 +107,31 @@
             <div class="row">
               
               <mat-form-field class="example-form-field m-3 col">
-                <mat-label>Choose Purchase & Delivery Date</mat-label>
-                <mat-date-range-input [rangePicker]="picker">
-                  <input matStartDate placeholder="Start date" formControlName="purchaseDate" >
-                  <input matEndDate placeholder="End date" formControlName="deliveryDate">
-                </mat-date-range-input>
-                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="datepicker" (dateChange)="dateMin($event)" formControlName="purchaseDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
               </mat-form-field>
-                </div>
+
+              <mat-form-field class="example-form-field m-3 col">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="datepicker2" [min]="deliveryMin" formControlName="deliveryDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="datepicker2"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker2>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+            </div>
 
                 <div class="row">
                 <mat-form-field class="m-3 col">
@@ -151,6 +165,8 @@
                     <mat-label>Invoice Amount</mat-label>
                     <span matPrefix class="m-2" style="font-weight: bolder;">&#8377;</span>
                     <input
+                      readonly="true"
+                      style="outline: none;user-select: none;"
                       type="tel"
                       pattern="[0-9]*"
                       minlength="1"

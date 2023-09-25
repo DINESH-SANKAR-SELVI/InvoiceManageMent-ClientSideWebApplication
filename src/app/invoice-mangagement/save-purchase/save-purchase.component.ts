@@ -207,6 +207,8 @@ export class SavePurchaseComponent implements OnInit {
     (<FormArray>this.PurchaseDetail.controls['aliases']).at(index)?.get('amount')?.setValue(amountOfFinal);
     
     console.log("index",index ,"price", price, "quantity" ,quantity ,"amount",amountOfFinal);
+
+    this.invoiceAmountCalc();
   }
   get aliases() {
     return this.PurchaseDetail.get('aliases') as FormArray;
@@ -222,5 +224,26 @@ export class SavePurchaseComponent implements OnInit {
       price: 120,
       amount: 120
     }));
+
+    this.invoiceAmountCalc();
+  }
+
+  invoiceAmountCalc(){
+     let calcInvoice :number = 0;
+
+    for(let i=0;i<(<FormArray>this.PurchaseDetail.get('aliases')).length;i++){
+      let temarr = ((<FormArray>this.PurchaseDetail.get('aliases')).at(i).get('amount')?.value) as unknown as number;
+      calcInvoice = calcInvoice + temarr;
+    }
+    console.log(calcInvoice);
+
+    this.PurchaseDetail.get('invoiceAmount')?.setValue((calcInvoice as unknown as string));
+  }
+
+  deliveryMin: any;
+  dateMin(event:any){
+      this.deliveryMin = event.value;
+      console.log(event.value);
+
   }
 }
