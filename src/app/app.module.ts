@@ -1,6 +1,9 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { provideAnimations, BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  provideAnimations,
+  BrowserAnimationsModule,
+} from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -45,7 +48,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
     ViewEmployeeComponent,
     TableInfoComponent,
     ViewModelComponent,
-    CreateUserComponent
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,12 +56,12 @@ import { CreateUserComponent } from './create-user/create-user.component';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
     MatFormFieldModule,
     MatIconModule,
@@ -76,10 +79,11 @@ import { CreateUserComponent } from './create-user/create-user.component';
     MatDialogModule,
     MatDividerModule,
     MatSelectModule,
-    InvoiceMangagementModule
-    
+    InvoiceMangagementModule,
   ],
-  providers: [ {provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true} ],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

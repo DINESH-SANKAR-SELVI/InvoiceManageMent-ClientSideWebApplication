@@ -1,3 +1,10 @@
+<div class="load-contain" *ngIf="load.isLoad | async">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <mat-spinner
+    class="position-absolute top-50 start-50 translate-middle" style="z-index: 1000;"
+  ></mat-spinner>
+</div>
+
 <div class="container position-relative top-0 start-0">
     <mat-card class="example-card">
         <mat-card-header class="d-flex justify-content-center">
@@ -225,6 +232,7 @@
                               <div class="col">uom</div>
                               <div class="col">price</div>
                               <div class="col">amount</div>
+                              <div class="col">Action</div>
                           </div>
                             
                         <div *ngFor="let alias of aliases.controls; let i=index" [formGroupName]="i">
@@ -236,6 +244,7 @@
                             <div class="col"><input formControlName="uom" readonly="true" style="outline: none;user-select: none;" /></div>
                             <div class="col"><input formControlName="price" readonly="true" style="outline: none;user-select: none;" /></div>
                             <div class="col"><input formControlName="amount" readonly="true" style="outline: none;user-select: none;" /></div>
+                            <div class="col"><button class="btn btn-danger" (click)="removeProduct(i)">Remove</button></div>
                           </div>
                         </div>
                       </div>
@@ -273,7 +282,7 @@
                               <div class="col"><input type="file" formControlName="file" (change)="fileChange(i,$event)" style="color:black;"/></div>
                               <div class="col">
                                 <label class="btn btn-success">update
-                                <input class="p-2" type="file" title="Update" style="display: none;" (change)="fileChange(i,$event)" formControlName="name" ></label>
+                                <input class="p-2" type="file" style="display: none;" (change)="fileChange(i,$event)" formControlName="file" ></label>
                                 <button class="btn btn-danger m-2" (click)="fileDelete(i)">Delete</button>
                               </div>
                             </div>

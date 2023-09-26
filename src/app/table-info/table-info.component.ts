@@ -1,45 +1,62 @@
-import { Component, AfterViewInit, ViewChild,OnInit } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource, MatTable} from '@angular/material/table';
+import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { DataProviderService, TableType } from '../data-provider.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-info',
   templateUrl: './table-info.component.html',
-  styleUrls: ['./table-info.component.css']
+  styleUrls: ['./table-info.component.css'],
 })
-export class TableInfoComponent implements OnInit {// AfterViewInit {
+export class TableInfoComponent implements OnInit {
+  // AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<TableType>;
 
- // ELEMENT_DATA!: TableType[];
-  
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'gender', 'dateOfBirth', 'email' ,'phoneNumber' ,'password', 'action'];
-  dataSource !: MatTableDataSource<TableType>;
+  // ELEMENT_DATA!: TableType[];
 
-  constructor( private dataProvider :DataProviderService, private route:Router ,private currentPath: ActivatedRoute) {
-     this.dataProvider.getAllUser().subscribe((result)=> { this.dataSource = new MatTableDataSource(result); this.dataSource.paginator = this.paginator; this.dataSource.sort = this.sort;});
+  displayedColumns: string[] = [
+    'id',
+    'firstName',
+    'lastName',
+    'gender',
+    'dateOfBirth',
+    'email',
+    'phoneNumber',
+    'password',
+    'action',
+  ];
+  dataSource!: MatTableDataSource<TableType>;
+
+  constructor(
+    private dataProvider: DataProviderService,
+    private route: Router,
+    private currentPath: ActivatedRoute
+  ) {
+    this.dataProvider.getAllUser().subscribe((result) => {
+      this.dataSource = new MatTableDataSource(result);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   // addData() {
 
   //   console.warn(this.dataSource.data);
   // }
 
-  removeData(id:string) {
+  removeData(id: string) {
     this.dataProvider.deleteById(id).subscribe();
 
     // this.dataSource.data.pop();
-     this.table.renderRows();
-     this.route.navigate(['..'],{ relativeTo: this.currentPath});
+    this.table.renderRows();
+    this.route.navigate(['..'], { relativeTo: this.currentPath });
 
     // console.warn(this.dataSource.data);
   }
