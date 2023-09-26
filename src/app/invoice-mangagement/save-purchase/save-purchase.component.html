@@ -202,8 +202,10 @@
           <mat-divider></mat-divider>
 
         </mat-card-content>
-            <mat-card-content>
 
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+          <mat-tab label="ProductDetails">
+            <mat-card-content>
               <section class="container">
                 <!-- <form [formGroup]="profileForm"> -->
                   <mat-card>
@@ -241,10 +243,51 @@
                     </mat-card-content>
                 </mat-card>
               </section>
+            </mat-card-content></mat-tab>
+            <mat-tab label="Attachments">
+              <mat-card-content>
+                <section class="container">
+                  <!-- <form [formGroup]="profileForm"> -->
+                    <mat-card>
+                      <mat-card-content class="p-5">
+                          <div class="m-1 p-2">
+                            <button type="button" mat-raised-button  class="demo-button" (click)="addAttachment()"><mat-icon>attachment</mat-icon>
+                              Add Attachments
+                            </button>
+                          </div>
+                          <div class="container" *ngIf="ProductAttachment.controls.length > 0">
+                          <div formArrayName="ProductAttachment">
+                            <div class="row w-100 text text-center bg-primary rounded m-6">
+                                <div class="col">sn</div>
+                                <div class="col">id</div>
+                                <div class="col">name</div>
+                                <div class="col">file</div>
+                                <div class="col">actions</div>
+                            </div>
+                              
+                          <div *ngFor="let product of ProductAttachment.controls; let i=index" [formGroupName]="i">
+                            <div class="row w-100">
+                              <div class="col"><p style="color:black">{{i+1}}</p></div>
+                              <div class="col"><input formControlName="id" /></div>
+                              <div class="col"><input type="text" placeholder="File Name" formControlName="name" autofocus readonly="true" style="outline: none;user-select: none;"  style="outline: 1px solid black;border-radius:6px;" /></div>
+                              <div class="col"><input type="file" formControlName="file" (change)="fileChange(i,$event)" style="color:black;"/></div>
+                              <div class="col">
+                                <label class="btn btn-success">update
+                                <input class="p-2" type="file" title="Update" style="display: none;" (change)="fileChange(i,$event)" formControlName="name" ></label>
+                                <button class="btn btn-danger m-2" (click)="fileDelete(i)">Delete</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div> 
+                      </mat-card-content>
+                  </mat-card>
+                </section>
+              </mat-card-content>
+            </mat-tab>
+          </mat-tab-group>
 
-
-              <mat-divider></mat-divider>
-            </mat-card-content>
+          <mat-divider></mat-divider>  
 
             <mat-card-actions>
             <button type="button" mat-button color="warn" (click)="cancel($event)">Cancel</button>

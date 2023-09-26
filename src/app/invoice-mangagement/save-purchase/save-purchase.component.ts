@@ -56,8 +56,16 @@ export class SavePurchaseComponent implements OnInit {
         // price: 120,
         // amount: 120
       // })
+    ]),
+    ProductAttachment: this.fb.array([
+      // this.fb.group(  {
+        // id: this.generateRandomId(),
+        // name: [''],
+        // file: ['']
+      // })
     ])
   });
+
 
   constructor( private TypeProvider: TypeProviderService, public load:LoaderService ,private fb: FormBuilder) { }
 
@@ -109,14 +117,11 @@ export class SavePurchaseComponent implements OnInit {
     this.TypeProvider.PostPurchase(vaa).subscribe((result)=>{/*console.log(result , "create user")*/});
 
     this.showAndPostData();
-
     this.PurchaseDetail.reset();
 
     setTimeout(() => {
       window.location.reload();  
-    }, 9000);
-    
-    
+    }, 9000);    
   }
 
   cancel(event:any): void{ event.preventDefault();
@@ -151,7 +156,6 @@ export class SavePurchaseComponent implements OnInit {
   ];
 
   states : {code: string, desc:string, cn:string}[]= [{code:'',desc: '', cn: ''}];
-
   Cities: {code:string,desc:string,cn:string,st:string}[] =[{code:'',desc:'',cn:'',st:''}];
 
   changeStates(ev: MatSelectChange){    
@@ -166,26 +170,11 @@ export class SavePurchaseComponent implements OnInit {
     // console.log(this.Cities);
   }
   
-  profileForm = this.fb.group({
-    aliases: this.fb.array([
-      // this.fb.group(  {
-        // id: this.generateRandomId(),
-        // Sn: '1',
-        // ItemName: 'apple',
-        // Toqty: 1,
-        // uom: 'KG',
-        // price: 120,
-        // amount: 120
-      // })
-    ])
-  });
-
   invoiceValue:any =[];
 
   showAndPostData(){
     console.log("posted and showed");
     this.invoiceValue = [];
-    
     for(let i=0;i<(<FormArray>this.PurchaseDetail.get('aliases')).length;i++){
       let temarr = (Object.values((<FormArray>this.PurchaseDetail.get('aliases')).at(i).value) as unknown as Array<any>);
       this.invoiceValue.push(temarr);
@@ -195,7 +184,6 @@ export class SavePurchaseComponent implements OnInit {
       // this.TypeProvider.postInvoice(valueOfInvoice).subscribe((result)=>{/*console.log(result, i , "Items added")*/});
     }
     console.warn(this.invoiceValue);
-
     // this.profileForm.reset();
   }
 
@@ -213,6 +201,9 @@ export class SavePurchaseComponent implements OnInit {
   get aliases() {
     return this.PurchaseDetail.get('aliases') as FormArray;
   }
+  get ProductAttachment() {
+    return this.PurchaseDetail.get('ProductAttachment') as FormArray;
+  }
 
   addAlias() {
     this.aliases.push(this.fb.group(  {
@@ -224,9 +215,17 @@ export class SavePurchaseComponent implements OnInit {
       price: 120,
       amount: 120
     }));
-
     this.invoiceAmountCalc();
   }
+
+  addAttachment(){
+    this.ProductAttachment.push(this.fb.group({
+        id: this.generateRandomId(),
+        name: [''],
+        file: ['']
+      })
+    )
+  } 
 
   invoiceAmountCalc(){
      let calcInvoice :number = 0;
@@ -245,5 +244,17 @@ export class SavePurchaseComponent implements OnInit {
       this.deliveryMin = event.value;
       console.log(event.value);
 
+  }
+
+  fileChange(index:any ,data:any){
+    let fileName = ((<FormArray>this.PurchaseDetail.get('ProductAttachment')).at(index).get('file')?.value);
+    // console.log(data.target.files[0].name);
+
+    ((<FormArray>this.PurchaseDetail.get('ProductAttachment')).at(index).get('name')?.setValue(data.target.files[0].name));
+  }
+
+  fileDelete(i:any){
+    (<FormArray>this.PurchaseDetail.get('ProductAttachment')).removeAt(i);
+    console.log("remove");
   }
 }

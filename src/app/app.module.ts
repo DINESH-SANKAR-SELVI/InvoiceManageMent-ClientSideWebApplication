@@ -77,6 +77,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
     MatDividerModule,
     MatSelectModule,
     InvoiceMangagementModule
+    
   ],
   providers: [ {provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true} ],
   bootstrap: [AppComponent]
