@@ -53,7 +53,9 @@ const routes: Routes = [
         data: { animation: 'SavePurchasePage' },
       },
     ],
-  },
+  },{
+    path: '**', redirectTo: 'LogIn'
+  }
 ];
 
 @NgModule({

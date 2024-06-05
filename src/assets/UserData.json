@@ -23,6 +23,30 @@
       "email": "ddpro31@gmail.com",
       "phoneNumber": 7604829520,
       "password": "123456789"
+    },
+    {
+      "id": "873210",
+      "name": {
+        "firstName": "kurinji",
+        "lastName": "selvan"
+      },
+      "gender": "male",
+      "dateOfBirth": "2003-03-31",
+      "email": "ddprofessional31@gmail.com",
+      "phoneNumber": "7604829520",
+      "password": "123456798"
+    },
+    {
+      "id": "580660",
+      "name": {
+        "firstName": "Test",
+        "lastName": "Login"
+      },
+      "gender": "female",
+      "dateOfBirth": "2001-01-01",
+      "email": "test@gmaill.com",
+      "phoneNumber": "9876541230",
+      "password": "9876543210"
     }
   ],
   "Purchase": [
