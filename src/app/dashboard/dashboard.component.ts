@@ -80,6 +80,10 @@ export class DashboardComponent {
     private contexts: ChildrenOutletContexts
   ) {}
 
+  logout(){
+    this.route.navigate(['login']);
+  }
+
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.[
       'animation'
