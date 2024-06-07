@@ -10,15 +10,18 @@ I would like to express my happiness to dedication in achieving this milestone. 
  
 Task Overview:
 
-            Our project incorporates Angular Material to improve the overall user interface and design. I have developed a functional login page and dashboard to provide access control and an engaging user experience. Both template-driven and reactive forms have been implemented with robust validation, ensuring data accuracy and user-friendly interactions. We have also successfully integrated HTTP request-response handling to communicate with external services, along with a comprehensive CRUD table for efficient data management.
+     Our project incorporates Angular Material to improve the overall user interface and design. I have developed a functional login
+     page and dashboard to provide access control and an engaging user experience. Both template-driven and reactive forms have been 
+     implemented with robust validation, ensuring data accuracy and user-friendly interactions. We have also successfully integrated 
+     HTTP request-response handling to communicate with external services, along with a comprehensive CRUD table for efficient data management.
 
 Suggestions for Improvement:
 
-	To further enhance our project and streamline our development process, I recommend the following enhancements:
+To further enhance our project and streamline our development process, I recommend the following enhancements:
 
-	Use of json-server:	I suggest integrating 'json-server' into our project. This tool allows us to create mock 				   RESTful API endpoints, making it easier to develop our application. It simplifies data 			   management during the development phase and aligns with best practices.
+  * Use of json-server:	I suggest integrating 'json-server' into our project. This tool allows us to create mock RESTful API endpoints, making it easier to develop our application. It simplifies data management during the development phase and aligns with best practices.
 
-	Full-Screen Mode [ F11 (or) maximize window ]: Implementing a full-screen mode in our application can provide users 			   with a more immersive and focused experience, especially when interacting with the dashboard. 			   This enhancement can enhance the user experience and engagement.
+  * Full-Screen Mode [ F11 (or) maximize window ]: Implementing a full-screen mode in our application can provide users with a more immersive and focused experience, especially when with the dashboard. This enhancement can enhance the user experience and engagement.
 
 I believe that these suggestions will contribute to the project's success and further improve its usability. Your feedback on these enhancements is highly valued.
 
@@ -26,7 +29,7 @@ If you have any questions or would like to discuss our progress in more detail, 
 
 Thank you for your support and trust in my capabilities.
 
--------------------------------------------------------RESULT'S OUTPUT-----------------------------------------------------------------------------------------
+-------------------------------------------------------RESULT'S OUTPUT----------------------------------------------------------------------------------
 
 ![image](https://github.com/DINESH-SANKAR-SELVI/InvoiceManageMent-ClientSideWebApplication/assets/116332749/bb1f54e8-2f04-4973-bebf-2ed7f80d66aa)
 
